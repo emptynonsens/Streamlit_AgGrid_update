@@ -7,16 +7,16 @@ from st_aggrid.grid_options_builder import GridOptionsBuilder
 data = pd.read_csv('netflix_titles.csv')
 data = data[['show_id', 'type', 'title', 'release_year', 'duration']]
 
-# ST WIDGETS
+# ST WIDGETS - uncomment to use of if need, search ###3### to find the other places where to replace code
 #selection_mode = st.radio('Selection Type', options = ['single','multiple'])
 
 # GRID CONFIG
 gd = GridOptionsBuilder.from_dataframe(data)
 gd.configure_pagination(enabled=True)
-#gd.configure_default_column(editable = True, groupable = False)
+gd.configure_default_column(editable = True, groupable = False)
 gd.configure_column("type", header_name="First", editable=True)
-#gd.configure_default_column('type', editable = True, groupable = False)
-gd.configure_selection(selection_mode='single', use_checkbox= False)
+gd.configure_selection(selection_mode='single', use_checkbox= False)###3###
+#gd.configure_selection(selection_mode=selection_mode, use_checkbox= False)
 
 gridoptions=gd.build()
 #_selectedRowNodeInfo
@@ -31,11 +31,15 @@ v = dataGrid['selected_rows']
 
 if v:
     st.write('')
+    # UNCOMMENT SECTION FOR PRINGING OUT EACH DICTIONARY KEY
     #st.dataframe(v)
     # for key, value in v[0].items():
     #      st.write(key, value)
+    
     show_id =v[0].get('show_id')
     type_ =v[0].get('type')
+    
+    # UNCOMMENT SECTION FOR PRINTING EVERY ITEM IN THE V[LIST]
     #v.get(show_id)
     # for item in v:
     #     st.write(item)
